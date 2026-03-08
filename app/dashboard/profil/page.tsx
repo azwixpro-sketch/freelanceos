@@ -11,7 +11,8 @@ export default function Profil() {
     prenom: '', nom: '', email: '',
     telephone: '', entreprise: '',
     siret: '', adresse: '', ville: '',
-    code_postal: '', tva_numero: ''
+    code_postal: '', tva_numero: '',
+    iban: '', bic: ''
   })
 
   useEffect(() => {
@@ -30,6 +31,8 @@ export default function Profil() {
         ville: user.user_metadata?.ville || '',
         code_postal: user.user_metadata?.code_postal || '',
         tva_numero: user.user_metadata?.tva_numero || '',
+        iban: user.user_metadata?.iban || '',
+        bic: user.user_metadata?.bic || '',
       }))
       setLoading(false)
     }
@@ -45,7 +48,8 @@ export default function Profil() {
         telephone: form.telephone, entreprise: form.entreprise,
         siret: form.siret, adresse: form.adresse,
         ville: form.ville, code_postal: form.code_postal,
-        tva_numero: form.tva_numero
+        tva_numero: form.tva_numero,
+        iban: form.iban, bic: form.bic
       }
     })
     if (error) setMessage('❌ Erreur : ' + error.message)
@@ -73,13 +77,14 @@ export default function Profil() {
         <h1 className="text-2xl font-bold mb-8">Mon profil freelance</h1>
         <form onSubmit={handleSubmit} className="space-y-6">
 
+          {/* Informations personnelles */}
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
             <h2 className="font-semibold mb-4 text-violet-400">👤 Informations personnelles</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
                 { label: 'Prénom', key: 'prenom', placeholder: 'Jean' },
                 { label: 'Nom', key: 'nom', placeholder: 'Dupont' },
-                { label: 'Email', key: 'email', placeholder: '', disabled: true },
+                { label: 'Email (non modifiable)', key: 'email', placeholder: '', disabled: true },
                 { label: 'Téléphone', key: 'telephone', placeholder: '06 12 34 56 78' },
               ].map(f => (
                 <div key={f.key}>
@@ -87,12 +92,13 @@ export default function Profil() {
                   <input type="text" value={(form as any)[f.key]}
                     onChange={e => setForm({...form, [f.key]: e.target.value})}
                     placeholder={f.placeholder} disabled={f.disabled}
-                    className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm placeholder:text-slate-500 focus:outline-none focus:border-violet-500 transition disabled:opacity-50" />
+                    className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm placeholder:text-slate-500 focus:outline-none focus:border-violet-500 transition disabled:opacity-50 disabled:cursor-not-allowed" />
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Entreprise */}
           <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
             <h2 className="font-semibold mb-4 text-violet-400">🏢 Mon entreprise</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -112,6 +118,28 @@ export default function Profil() {
                     className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm placeholder:text-slate-500 focus:outline-none focus:border-violet-500 transition" />
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Coordonnées bancaires */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <h2 className="font-semibold mb-4 text-violet-400">💳 Coordonnées bancaires</h2>
+            <p className="text-slate-500 text-xs mb-4">Ces informations apparaîtront automatiquement sur toutes vos factures PDF.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="md:col-span-2">
+                <label className="text-slate-400 text-sm block mb-2">IBAN</label>
+                <input type="text" value={form.iban}
+                  onChange={e => setForm({...form, iban: e.target.value})}
+                  placeholder="FR76 XXXX XXXX XXXX XXXX XXXX XXX"
+                  className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm font-mono placeholder:text-slate-500 focus:outline-none focus:border-violet-500 transition" />
+              </div>
+              <div>
+                <label className="text-slate-400 text-sm block mb-2">BIC / SWIFT</label>
+                <input type="text" value={form.bic}
+                  onChange={e => setForm({...form, bic: e.target.value})}
+                  placeholder="XXXXXXXX"
+                  className="w-full bg-slate-800 border border-slate-700 text-white rounded-xl px-4 py-3 text-sm font-mono placeholder:text-slate-500 focus:outline-none focus:border-violet-500 transition" />
+              </div>
             </div>
           </div>
 

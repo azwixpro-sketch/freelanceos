@@ -201,6 +201,13 @@ export default function ModifierFacture() {
             </div>
           )}
           <div className="flex gap-3">
+            <button
+  type="button"
+  onClick={() => window.open(`/dashboard/factures/${id}/imprimer`, '_blank')}
+  className="border border-violet-500 text-violet-400 hover:bg-violet-500/10 px-8 py-3 rounded-xl font-medium transition"
+>
+  🖨️ Exporter PDF
+</button>
             <button type="submit" disabled={saving}
               className="bg-violet-600 hover:bg-violet-500 disabled:opacity-50 text-white px-8 py-3 rounded-xl font-medium transition">
               {saving ? 'Sauvegarde...' : '💾 Sauvegarder'}

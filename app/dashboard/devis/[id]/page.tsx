@@ -288,6 +288,34 @@ export default function ModifierDevis() {
               <button type="button" className="border border-slate-700 hover:border-slate-500 text-white px-8 py-3 rounded-xl transition">
                 Annuler
               </button>
+              <button
+  type="button"
+  onClick={async () => {
+    const { data: { user } } = await supabase.auth.getUser()
+    const numero = `FAC-${Date.now().toString().slice(-6)}`
+    const { error } = await supabase.from('factures').insert({
+      user_id: user!.id,
+      client_id: form.client_id || null,
+      devis_id: id,
+      numero,
+      titre: form.titre,
+      lignes,
+      sous_total: sousTotal,
+      tva_taux: form.tva_taux,
+      tva_montant: tvaMontant,
+      total,
+      notes: form.notes,
+      statut: 'en_attente'
+    })
+    if (!error) {
+      alert('✅ Facture créée depuis ce devis !')
+      window.location.href = '/dashboard/factures'
+    }
+  }}
+  className="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3 rounded-xl font-medium transition"
+>
+  🧾 Convertir en facture
+</button>
             </a>
           </div>
         </form>
