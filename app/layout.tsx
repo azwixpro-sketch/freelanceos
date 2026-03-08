@@ -5,14 +5,14 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'FreelanceOS — Gestion freelance tout-en-un',
-  description: 'Gérez vos clients, devis et factures en un seul endroit. L\'outil gratuit conçu pour les freelances et auto-entrepreneurs français.',
-  keywords: 'freelance, devis, facture, auto-entrepreneur, gestion, comptabilité',
+  title: 'Facturo — Devis et factures pour freelances français',
+  description: 'Gérez vos clients, devis et factures en quelques clics. L\'outil gratuit conçu pour les freelances et auto-entrepreneurs français.',
+  keywords: 'facturo, devis, facture, auto-entrepreneur, freelance, gestion, comptabilité france',
   openGraph: {
-    title: 'FreelanceOS — Gestion freelance tout-en-un',
-    description: 'Clients, devis, factures. Simple, rapide, gratuit.',
-    url: 'https://freelanceos-1y1n.vercel.app',
-    siteName: 'FreelanceOS',
+    title: 'Facturo — Devis et factures pour freelances français',
+    description: 'Clients, devis, factures. Simple, rapide, 100% français.',
+    url: 'https://facturo.fr',
+    siteName: 'Facturo',
     locale: 'fr_FR',
     type: 'website',
   },

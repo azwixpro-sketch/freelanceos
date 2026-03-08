@@ -68,7 +68,7 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2">
             <span className="text-2xl">⚡</span>
-            <span className="text-xl font-bold">Freelance<span className="text-violet-400">OS</span></span>
+            <span className="text-xl font-bold">Facto<span className="text-violet-400">OS</span></span>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-slate-400 text-sm">👋 {user?.user_metadata?.prenom || user?.email}</span>

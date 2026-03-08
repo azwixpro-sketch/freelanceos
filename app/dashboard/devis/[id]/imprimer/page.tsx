@@ -53,7 +53,7 @@ export default function ImprimerDevis() {
       <div className="max-w-3xl mx-auto p-12 bg-white min-h-screen">
         <div className="flex justify-between items-start mb-12">
           <div>
-            <h1 className="text-3xl font-bold text-violet-600">FreelanceOS</h1>
+            <h1 className="text-3xl font-bold text-violet-600">Facturo</h1>
             <p className="text-gray-500 text-sm mt-1">{user?.user_metadata?.entreprise || ''}</p>
             <p className="text-gray-500 text-sm">{user?.user_metadata?.adresse || ''}</p>
             <p className="text-gray-500 text-sm">{user?.user_metadata?.code_postal || ''} {user?.user_metadata?.ville || ''}</p>
@@ -139,7 +139,7 @@ export default function ImprimerDevis() {
         </div>
 
         <div className="text-center text-gray-400 text-xs border-t border-gray-200 pt-6">
-          <p>Devis généré avec FreelanceOS • {user?.email}</p>
+          <p>Devis généré avec Facturo • {user?.email}</p>
           {user?.user_metadata?.siret && <p>SIRET : {user?.user_metadata?.siret}</p>}
           {devis.tva_taux === 0 && <p className="mt-1">TVA non applicable — Art. 293 B du CGI</p>}
         </div>
